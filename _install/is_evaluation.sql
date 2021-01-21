@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Nov 11, 2020 at 11:07 AM
--- Server version: 5.7.31
--- PHP Version: 7.3.21
+-- Host: localhost
+-- Generation Time: Jan 21, 2021 at 01:07 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -20,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `is_evaluation`
 --
-CREATE DATABASE IF NOT EXISTS `is_evaluation` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `is_evaluation`;
 
 -- --------------------------------------------------------
 
@@ -29,14 +28,11 @@ USE `is_evaluation`;
 -- Table structure for table `password`
 --
 
-DROP TABLE IF EXISTS `password`;
-CREATE TABLE IF NOT EXISTS `password` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `password` (
+  `id` int(11) NOT NULL,
   `staffid` varchar(5) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `fk_login_users_staff_staffid` (`staffid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `password`
@@ -51,15 +47,20 @@ INSERT INTO `password` (`id`, `staffid`, `password`) VALUES
 -- Table structure for table `social_media`
 --
 
-DROP TABLE IF EXISTS `social_media`;
-CREATE TABLE IF NOT EXISTS `social_media` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `social_media` (
+  `id` int(11) NOT NULL,
   `platform` varchar(10) NOT NULL,
-  `link` text,
-  `staff_id` varchar(5) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_social_media_staff_staffid` (`staff_id`)
+  `link` text DEFAULT NULL,
+  `staff_id` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `social_media`
+--
+
+INSERT INTO `social_media` (`id`, `platform`, `link`, `staff_id`) VALUES
+(2, 'Facebook', 'www.facebook.com/johndoe2', 'IS001'),
+(5, 'Twitter', 'www.twitter.com/johndoe', 'IS001');
 
 -- --------------------------------------------------------
 
@@ -67,14 +68,12 @@ CREATE TABLE IF NOT EXISTS `social_media` (
 -- Table structure for table `staff`
 --
 
-DROP TABLE IF EXISTS `staff`;
-CREATE TABLE IF NOT EXISTS `staff` (
+CREATE TABLE `staff` (
   `staffid` varchar(5) NOT NULL COMMENT 'unique Evidence Action employee id provided by HR department',
   `firstname` varchar(15) NOT NULL,
   `lastname` varchar(15) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `phonenumber` varchar(11) NOT NULL,
-  PRIMARY KEY (`staffid`)
+  `phonenumber` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -83,6 +82,46 @@ CREATE TABLE IF NOT EXISTS `staff` (
 
 INSERT INTO `staff` (`staffid`, `firstname`, `lastname`, `email`, `phonenumber`) VALUES
 ('IS001', 'John', 'Doe', 'john.doe@evidenceaction.org', '0700000000');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `password`
+--
+ALTER TABLE `password`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `fk_login_users_staff_staffid` (`staffid`) USING BTREE;
+
+--
+-- Indexes for table `social_media`
+--
+ALTER TABLE `social_media`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_social_media_staff_staffid` (`staff_id`);
+
+--
+-- Indexes for table `staff`
+--
+ALTER TABLE `staff`
+  ADD PRIMARY KEY (`staffid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `password`
+--
+ALTER TABLE `password`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `social_media`
+--
+ALTER TABLE `social_media`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
