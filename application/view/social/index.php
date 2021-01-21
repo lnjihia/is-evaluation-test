@@ -13,8 +13,9 @@
                     <div class="col-lg-12">
                         <div class="container">
                             <h3 class="page-header">Add social media:</h3>
-                            <!-- candidate: fulfill the form's action -->
-                            <form action="<?php echo URL; ?> social/addSocialMedia . $_SESSION["staffid"]; ?>" method="POST">
+                            <form action="<?php echo(social/addSocialMedia . $_SESSION["staffid"]); ?>" method="POST">
+                                <!-- candidate fulfill the reference -->
+                                <!--how to call the method??! -->
                                 <label>Platform</label>
                                 <input type="text" name="platform" value="" required />
                                 <label>Link</label>
@@ -45,10 +46,10 @@
                                                     <a href="<?php echo htmlspecialchars($platform->link, ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($platform->link, ENT_QUOTES, 'UTF-8'); ?></a>
                                                 <?php } ?>
                                             </td>
-                                            <!-- candidate: fulfill the reference -->
-                                            <td><a href="<?php echo URL . 'social/deleteSocialMedia/' . htmlspecialchars($platform->id, ENT_QUOTES, 'UTF-8');?>">delete</a></td>
-                                            <!-- candidate: fulfill the reference -->
-                                            <td><a href="<?php echo URL . 'social/editSocialMedia/' . htmlspecialchars($platform->id, ENT_QUOTES, 'UTF-8'); ?>">edit</a></td>
+                                            <td><a href="<?php echo URL . 'social/deletesocialmedia/' . htmlspecialchars($platform->id, ENT_QUOTES, 'UTF-8'); ?>">delete</a></td>
+                                            <!--candidate fulfill the reference -->
+                                            <td><a href="<?php echo URL . 'social/updatesocialmedia/' . htmlspecialchars($platform->id, ENT_QUOTES, 'UTF-8'); ?>">edit</a></td>
+                                            <!--candidate fulfill the reference -->
                                         </tr>
                                     <?php } ?>
                                     </tbody>
@@ -63,6 +64,6 @@
             <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
-
+   
     </div>
     <!-- /#wrapper -->

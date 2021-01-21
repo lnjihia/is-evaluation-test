@@ -30,7 +30,7 @@ class SignIn extends Controller
     public function logIn()
     {
         // load the model
-        $this->loadModel('model');
+        $this->loadModel('Model');
 
         // then do getStaff() in model/model.php
         $staff = $this->model->getStaff($_POST["email"], $_POST["password"]);
@@ -61,7 +61,6 @@ class SignIn extends Controller
         // candidate: fulfill session management here:
 
         // remember to redirect the user back to the sign in page after logging them out
-       header('Location:' . URL . 'signin');
+        header('Location:' . URL . 'signin');
     }
-
 }

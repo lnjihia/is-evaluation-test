@@ -13,16 +13,15 @@
                     <div class="col-lg-12">
                         <div class="container">
                             <h3 class="page-header">Adjust social media profile:</h3>
-                            <!--// candidate: fulfill the form's action-->
-                            <!--specify session user with staffid on form action?? - Lillian -->
-
-                            <form action="<?php echo URL; ?>social/updateSocialMedia . $_SESSION["staffid"];?>" method="POST">
+                            <!--candidate fulfill the reference -->
+                            <form action="<?php echo URL; ?>social/updatesocialmedia" method="POST">
                                 <label>Platform</label>
                                 <input autofocus type="text" name="platform" value="<?php echo htmlspecialchars($socialmedia->platform, ENT_QUOTES, 'UTF-8'); ?>" required />
                                 <label>Link</label>
                                 <input type="text" name="link" value="<?php echo htmlspecialchars($socialmedia->link, ENT_QUOTES, 'UTF-8'); ?>" />
                                 <input type="hidden" name="social_media_id" value="<?php echo htmlspecialchars($socialmedia->id, ENT_QUOTES, 'UTF-8'); ?>" />
                                 <input type="submit" name="submit_update_social_media" value="Update" />
+                                <!--why is it socialmedia not platform as in index...? -->
                             </form>
 
                         </div>

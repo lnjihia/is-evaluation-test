@@ -7,7 +7,7 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="<?php echo URL; ?>signin/logIn" method="POST">
+                        <form role="form" action="<?php echo URL; ?>signin/login" method="POST">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Email" name="email" type="email" autofocus>
