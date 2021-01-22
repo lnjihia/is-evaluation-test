@@ -59,6 +59,8 @@ class SignIn extends Controller
     public function logOut()
     {
         // candidate: fulfill session management here:
+        session_unset();
+        session_destroy();
 
         // remember to redirect the user back to the sign in page after logging them out
         header('Location:' . URL . 'signin');

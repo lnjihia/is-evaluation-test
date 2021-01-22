@@ -145,7 +145,7 @@ class Model
 
 
         // useful for debugging: you can see the SQL behind above construction by using:
-        //echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+        // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
 
         $query->execute($parameters);
     }
